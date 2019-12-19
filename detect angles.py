@@ -35,15 +35,15 @@ def f(img):
             if(x2-x1)==0:
                 th=np.pi/2
             else:
-                th=math.atan((y2-y1)/(x2-x1))
+                th=math.atan((y2-y1)/(x2-x1))*r2t
             thetas.append(th)
             cv2.line(img, (x1, y1), (x2, y2), (0, 0, 255), 5)
         M=max(thetas)
         m=min(thetas)
         x=int(.5*x/len(thetas))
         y=int(.5*y/len(thetas))
-        if (M-m)>5*t2r:
-            theta=round(180-math.atan((M-m)/(1+M*m))*r2t,2)
+        if (M-m)>5:
+            theta=round(180-(M-m),2)
             cv2.putText(img,"angle = "+str(theta),(x,y+5),font,2,(255,255,0),2,cv2.LINE_AA)
         else:
             cv2.putText(img,"unable to resolve",(x,y+5),font,2,(0,0,255),2,cv2.LINE_AA)
